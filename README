@@ -1,0 +1,27 @@
+                        plot.phylo widget v1.0
+
+To be used & abused :)
+
+________________________________________________________________________________
+                            RUNNING
+
+Script needs the following R packages installed:
+* gWidgets
+* ape
+* ggplot2
+* cairoDevice
+
+
+Run it by executing PlotPhylo.r script (remember to adjust the path).
+* The "Open" button is for loading single tree files (.nex, .tree).
+
+* "New" opens a new tab for other phylographic trees. The usefull backproduct 
+  is it will also catch any other plots R produces while the widget is opened. 
+
+* "Close" closes the currently opened tab.
+
+* "Save" saves the current plot in eps format (vector graphic). 
+
+* "Quit" is obvious :)
+
+
