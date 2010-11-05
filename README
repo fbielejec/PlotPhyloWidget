@@ -24,4 +24,11 @@ Run it by executing PlotPhylo.r script (remember to adjust the path).
 
 * "Quit" is obvious :)
 
-
+________________________________________________________________________________
+                            TODO
+* Add support for class "multiphylo"
+* Add mirroring in y axis functionality
+* Allow for saving from inactive tabs
+                                                       
+                            
+                         
