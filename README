@@ -1,4 +1,4 @@
-                        Plot Phylo Widget
+                        PlotPhylo Widget
 
   This is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as
@@ -21,7 +21,7 @@ Script needs the following R packages installed:
 
 
 Run it by executing PlotPhylo.r script (remember to adjust the path).
-* The "Open" button is for loading single tree files (.nex, .tree).
+* The "Open" button is for loading single tree files (.nex, .tree, .tre).
 
 * "New" opens a new tab for other phylographic trees. The usefull backproduct 
   is it will also catch any other plots R produces while the widget is opened. 
