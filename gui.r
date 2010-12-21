@@ -30,7 +30,7 @@ ReadNex <- function(h, ...) {
     text    = "Upload nexus file...",
     type    = "open",      
     filter = list(
-      "Newick files" = list(patterns = c("*.nex","*.tree")),
+      "Newick files" = list(patterns = c("*.nex","*.tree", "*.tre")),
       "All files" = list(patterns = c("*"))
     ),
     handler = GGplotHandler
@@ -70,6 +70,8 @@ group <- ggroup(horizontal = FALSE, container=win)
 nb <- gnotebook(container = group, expand=TRUE)
 firstplot <- ggraphics(container = nb, label="plot")
 gtoolbar(menulist, cont=TRUE, container=win, style="both")
+
+
 
 
 
