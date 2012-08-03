@@ -8,11 +8,13 @@ GGplotHandler <- function(h,...) {
   phylo = fortify.phylo(x)
   phyloLabels = label.phylo(x)
   
-  reverseAxis = ifelse(
-    svalue(select_axis_alignment) == "Reverse axis",
-    TRUE,
-    FALSE
-    )
+#   reverseAxis = ifelse(
+#     svalue(select_axis_alignment) == "Reverse axis",
+#     TRUE,
+#     FALSE
+#     )
+  
+  reverseAxis = svalue(reverseCheckbox)
   
   if(reverseAxis) {
     
@@ -23,7 +25,7 @@ GGplotHandler <- function(h,...) {
   } 
   
   
-  MAXX <- Maxx.Phylo(x)
+  MAXX <- max(phylo$x)#Maxx.Phylo(x)
   plot(1, col = "white", xlab = "", ylab = "", main = "", xaxt = "n", yaxt = "n", type = "n", xlim = c(0, MAXX), axes = F)
   MAXSTRING <- max(strwidth(x$tip.label))
   xlim <- MAXX + MAXSTRING
@@ -32,11 +34,22 @@ GGplotHandler <- function(h,...) {
   p <- p + geom_segment2(aes(x = x, y = y, xend = xend, yend = yend), colour = "blue", alpha = 1)
   p <- p + geom_text(data = phyloLabels, aes(x = x, y = y, label = label), hjust = 0, family = 3, vjust = 0.5, size = 3) + xlim(0, xlim)
   theme <- theme_update(
-    axis.text.y = theme_blank(),
-    axis.ticks = theme_blank(),
-    axis.title.x = theme_blank(),
-    axis.title.y = theme_blank(),
-    legend.position = "none"
+  axis.text.y = theme_blank(),
+  axis.ticks = theme_blank(),
+  axis.title.y = theme_blank(),
+  axis.line = theme_blank(),
+  axis.ticks = theme_segment(colour = "black", size = 0.2),
+  legend.background = theme_rect(colour = NA),
+  legend.key = theme_rect(colour = "grey80"),
+  legend.position = "right",
+  legend.justification = "center",
+  panel.background = theme_rect(fill = "white", colour = NA),
+  panel.border = theme_rect(fill = NA, colour = "grey50"),
+  panel.grid.major = theme_line(colour = "grey90", size = 0.2),
+  panel.grid.minor = theme_line(colour = "grey98", size = 0.5),
+  strip.background = theme_rect(fill = "grey80", colour = "grey50"),
+  plot.background = theme_rect(colour = NA),
+  legend.position = "none"
   )
   
   p <- p + theme_set(theme)
@@ -76,7 +89,9 @@ SavePlot <- function(h, ...) {
   )
 }
 
-select_axis_alignment <- gdroplist(c("Normal axis", "Reverse axis"))#, container = tmp)
+# select_axis_alignment <- gdroplist(c("Normal axis", "Reverse axis"))#, container = tmp)
+
+reverseCheckbox = gcheckbox("Reverse axis")
 
 menulist = list(
   new = gaction("New", icon = "new", handler = function(h, ...) add(nb, ggraphics(), label = "plot" ) ),
@@ -84,7 +99,8 @@ menulist = list(
   close = gaction("Close", icon ="delete", handler = function(h,...)  dispose(nb)  ),
   save = gaction("Save", icon ="save", handler =  SavePlot ),   
   separator = gseparator(),
-  reverse = select_axis_alignment,
+#   reverse = select_axis_alignment,
+  reverse = reverseCheckbox,
   separator = gseparator(),
   quit = list(icon="quit", handler = function(h,...)  dispose(win) )
 )

@@ -8,13 +8,13 @@
 GeomSegment2 <- proto(ggplot2:::GeomSegment, {
   objname <- "geom_segment2"
   
-  draw <- function(., data, scales, coordinates, arrow=NULL, ...) {
+  draw <- function(., data, scales, coordinates, arrow = NULL, ...) {
     if (is.linear(coordinates)) {
       return(with(coord_transform(coordinates, data, scales),
                   
-                  segmentsGrob(x, y, xend, yend, default.units="native",
-                               gp = gpar(col=alpha(colour, alpha), lwd = size * .pt,
-                                         lty=linetype, lineend = "round"),
+                  segmentsGrob(x, y, xend, yend, default.units = "native",
+                               gp = gpar(col = alpha(colour, alpha), lwd = size * .pt,
+                                         lty = linetype, lineend = "round"),
                                arrow = arrow)
       ))
     }
@@ -102,24 +102,24 @@ ans2 <- .C("node_depth_edgelength", as.integer(Ntip), as.integer(Nnode), as.inte
 
 	xx <- ans2[[7]]
 
-data.frame(x=xx[1:Ntip], y=yy[1:Ntip], label=phylo$tip.label)
+data.frame(x = xx[1 : Ntip], y = yy[1 : Ntip], label = phylo$tip.label)
 }
 
 ##################
 #---Maxx.Phylo---#
 ##################
-Maxx.Phylo <- function(phylo) {
-
-Ntip <- length(phylo$tip.label)
-Nnode <- phylo$Nnode
-Nedge <- dim(phylo$edge)[1]
-z <- reorder(phylo, order = "pruningwise")
-
-ans2 <- .C("node_depth_edgelength", as.integer(Ntip), as.integer(Nnode), as.integer(z$edge[, 1]), 
-	as.integer(z$edge[, 2]), as.integer(Nedge), as.double(z$edge.length), double(Ntip + Nnode), 
-	DUP = FALSE, PACKAGE = "ape")
-
-	xx <- ans2[[7]]
-	MAXX <- round(max(xx))
-	return(MAXX)
-}
+# Maxx.Phylo <- function(phylo) {
+# 
+# Ntip <- length(phylo$tip.label)
+# Nnode <- phylo$Nnode
+# Nedge <- dim(phylo$edge)[1]
+# z <- reorder(phylo, order = "pruningwise")
+# 
+# ans2 <- .C("node_depth_edgelength", as.integer(Ntip), as.integer(Nnode), as.integer(z$edge[, 1]), 
+# 	as.integer(z$edge[, 2]), as.integer(Nedge), as.double(z$edge.length), double(Ntip + Nnode), 
+# 	DUP = FALSE, PACKAGE = "ape")
+# 
+# 	xx <- ans2[[7]]
+# 	MAXX <- round(max(xx))
+# 	return(MAXX)
+# }
