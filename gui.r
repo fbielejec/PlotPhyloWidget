@@ -34,22 +34,23 @@ GGplotHandler <- function(h,...) {
   p <- p + geom_segment2(aes(x = x, y = y, xend = xend, yend = yend), colour = "blue", alpha = 1)
   p <- p + geom_text(data = phyloLabels, aes(x = x, y = y, label = label), hjust = 0, family = 3, vjust = 0.5, size = 3) + xlim(0, xlim)
   theme <- theme_update(
-  axis.text.y = theme_blank(),
-  axis.ticks = theme_blank(),
-  axis.title.y = theme_blank(),
-  axis.line = theme_blank(),
-  axis.ticks = theme_segment(colour = "black", size = 0.2),
-  legend.background = theme_rect(colour = NA),
-  legend.key = theme_rect(colour = "grey80"),
-  legend.position = "right",
-  legend.justification = "center",
-  panel.background = theme_rect(fill = "white", colour = NA),
-  panel.border = theme_rect(fill = NA, colour = "grey50"),
-  panel.grid.major = theme_line(colour = "grey90", size = 0.2),
-  panel.grid.minor = theme_line(colour = "grey98", size = 0.5),
-  strip.background = theme_rect(fill = "grey80", colour = "grey50"),
-  plot.background = theme_rect(colour = NA),
-  legend.position = "none"
+    axis.text.y = element_blank(),
+    axis.ticks = element_blank(),
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    axis.line = element_blank(),
+    axis.ticks = element_blank(),
+    legend.background = element_rect(fill = NA, size = .5, linetype = NULL, colour = NA),
+    legend.key = element_rect(colour = "grey80"),
+    legend.position = "top",
+    legend.justification = "center",
+    panel.background = element_rect(size = 1, fill = "white", colour = NA),
+    panel.border = element_rect(fill = NA, colour = "grey50"),
+    panel.grid.major = element_line(colour = "grey90", size = 0.2),
+    panel.grid.minor = element_line(colour = "grey98", size = 0.5),
+    strip.background = element_rect(fill = "grey80", colour = "grey50"),
+    plot.background = element_rect(colour = NA),
+    legend.position = "none"
   )
   
   p <- p + theme_set(theme)
